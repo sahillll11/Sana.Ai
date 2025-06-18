@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sana Professional">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#1a1a2e">
+
+    <title>Sana Professional AI Assistant</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Professional Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+
+    <!-- Professional Styles -->
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <!-- Professional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Professional Loading Screen -->
+    <div id="loadingScreen" class="professional-loading">
+        <div class="loading-container">
+            <!-- Professional Logo -->
+            <div class="professional-logo">
+                <div class="logo-hexagon">
+                    <div class="hexagon-inner">
+                        <div class="neural-network">
+                            <div class="neural-node node-1"></div>
+                            <div class="neural-node node-2"></div>
+                            <div class="neural-node node-3"></div>
+                            <div class="neural-connection conn-1"></div>
+                            <div class="neural-connection conn-2"></div>
+                            <div class="neural-connection conn-3"></div>
+                        </div>
+                        <i class="material-icons ai-icon">psychology</i>
+                    </div>
+                </div>
+                <div class="loading-orbits">
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <div class="orbit orbit-3"></div>
+                </div>
+            </div>
+
+            <!-- Professional Branding -->
+            <div class="brand-section">
+                <h1 class="brand-title">Sana</h1>
+                <p class="brand-tagline">Professional AI Assistant</p>
+                <div class="version-info">
+                    <span class="version">v2.0</span>
+                    <span class="build">Build 2024.1</span>
+                </div>
+            </div>
+
+            <!-- Professional Progress -->
+            <div class="loading-progress-pro">
+                <div class="progress-track">
+                    <div class="progress-fill"></div>
+                    <div class="progress-glow"></div>
+                </div>
+                <div class="loading-stats">
+                    <span class="stat-item">
+                        <i class="material-icons">memory</i>
+                        <span class="stat-value" id="memoryUsage">0%</span>
+                    </span>
+                    <span class="stat-item">
+                        <i class="material-icons">speed</i>
+                        <span class="stat-value" id="processingSpeed">0ms</span>
+                    </span>
+                    <span class="stat-item">
+                        <i class="material-icons">cloud</i>
+                        <span class="stat-value" id="connectionStatus">Connecting</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Loading Status -->
+            <div class="loading-status">
+                <p class="status-text" id="loadingStatus">Initializing neural networks...</p>
+                <div class="status-dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional App Container -->
+    <div id="app" class="professional-app" style="display: none;">
+        <!-- Professional Header -->
+        <header class="professional-header">
+            <div class="header-container">
+                <!-- Logo Section -->
+                <div class="header-logo">
+                    <div class="logo-badge">
+                        <div class="badge-inner">
+                            <img src="/api/sana/avatar/girl" alt="Sana" class="header-sana-avatar" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="material-icons avatar-fallback" style="display: none;">psychology</i>
+                        </div>
+                        <div class="badge-pulse"></div>
+                    </div>
+                    <div class="logo-info">
+                        <h1 class="app-title">Sana</h1>
+                        <div class="status-bar">
+                            <div class="status-indicator active" id="statusIndicator">
+                                <span class="status-dot"></span>
+                                <span class="status-text">Online</span>
+                            </div>
+                            <div class="connection-strength">
+                                <div class="signal-bar bar-1"></div>
+                                <div class="signal-bar bar-2"></div>
+                                <div class="signal-bar bar-3"></div>
+                                <div class="signal-bar bar-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="action-button notification-btn" id="notificationBtn">
+                        <i class="material-icons">notifications</i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="action-button settings-btn" id="settingsBtn">
+                        <i class="material-icons">settings</i>
+                    </button>
+                    <button class="action-button menu-btn" id="menuBtn">
+                        <i class="material-icons">menu</i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Professional Navigation -->
+            <nav class="header-nav">
+                <div class="nav-tabs">
+                    <button class="nav-tab active" data-tab="chat">
+                        <i class="material-icons">chat</i>
+                        <span>Chat</span>
+                    </button>
+                    <button class="nav-tab" data-tab="voice">
+                        <i class="material-icons">mic</i>
+                        <span>Voice</span>
+                    </button>
+                    <button class="nav-tab" data-tab="tools">
+                        <i class="material-icons">build</i>
+                        <span>Tools</span>
+                    </button>
+                    <button class="nav-tab" data-tab="analytics">
+                        <i class="material-icons">analytics</i>
+                        <span>Stats</span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Chat Container -->
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <div class="message-avatar sana-avatar">
+                            <img src="/api/sana/avatar/girl" alt="Sana" class="sana-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <i class="fas fa-robot avatar-fallback" style="display: none;"></i>
+                        </div>
+                        <div class="message-content">
+                            <p>Hello! I'm Sana, your AI assistant.</p>
+                            <p>Tap the microphone to start voice commands or type your message below.</p>
+                            <p>You can choose my avatar in the settings! 🎭</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Voice Visualization -->
+            <div class="voice-container" id="voiceContainer" style="display: none;">
+                <div class="voice-visualizer">
+                    <div class="voice-circle">
+                        <div class="voice-wave wave1"></div>
+                        <div class="voice-wave wave2"></div>
+                        <div class="voice-wave wave3"></div>
+                        <div class="voice-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="voice-status">
+                    <p id="voiceStatus">Listening...</p>
+                    <p id="voiceCommand" class="voice-command"></p>
+                </div>
+            </div>
+
+            <!-- Image Display -->
+            <div class="image-container" id="imageContainer" style="display: none;">
+                <div class="image-content">
+                    <img id="generatedImage" src="" alt="Generated Image">
+                    <div class="image-info">
+                        <p id="imagePrompt"></p>
+                        <div class="image-actions">
+                            <button class="action-btn" id="saveImageBtn">
+                                <i class="fas fa-download"></i> Save
+                            </button>
+                            <button class="action-btn" id="shareImageBtn">
+                                <i class="fas fa-share"></i> Share
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Controls -->
+        <div class="bottom-controls">
+            <!-- Input Area -->
+            <div class="input-area">
+                <div class="input-container">
+                    <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
+                    <button class="send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn voice-btn" id="voiceBtn">
+                    <i class="fas fa-microphone"></i>
+                    <span>Voice</span>
+                </button>
+                <button class="action-btn image-btn" id="imageBtn">
+                    <i class="fas fa-image"></i>
+                    <span>Image</span>
+                </button>
+                <button class="action-btn whatsapp-btn" id="whatsappBtn">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </button>
+                <button class="action-btn apps-btn" id="appsBtn">
+                    <i class="fas fa-th"></i>
+                    <span>Apps</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Side Menu -->
+        <div class="side-menu" id="sideMenu">
+            <div class="menu-header">
+                <h3>Sana Menu</h3>
+                <button class="close-menu" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="menu-content">
+                <div class="menu-section">
+                    <h4>Features</h4>
+                    <ul class="menu-list">
+                        <li><a href="#" data-action="voice"><i class="fas fa-microphone"></i> Voice Commands</a></li>
+                        <li><a href="#" data-action="image"><i class="fas fa-image"></i> Image Generation</a></li>
+                        <li><a href="#" data-action="whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="#" data-action="apps"><i class="fas fa-mobile-alt"></i> App Control</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h4>Settings</h4>
+                    <ul class="menu-list">
+                        <li><a href="#" data-action="settings"><i class="fas fa-cog"></i> Preferences</a></li>
+                        <li><a href="#" data-action="history"><i class="fas fa-history"></i> Chat History</a></li>
+                        <li><a href="#" data-action="help"><i class="fas fa-question-circle"></i> Help</a></li>
+                        <li><a href="#" data-action="about"><i class="fas fa-info-circle"></i> About</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Settings</h3>
+                    <button class="close-modal" id="closeSettingsBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>Voice Recognition</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="voiceToggle" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>Continuous Mode</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="continuousToggle">
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>Sound Effects</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="slider"></span>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>Theme</label>
+                        <select id="themeSelect">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>Sana Avatar</label>
+                        <div class="avatar-selection">
+                            <div class="avatar-option" data-type="girl">
+                                <img src="/api/sana/avatar/girl" alt="Girl Avatar" class="avatar-preview">
+                                <span>Girl</span>
+                                <input type="radio" name="avatarType" value="girl" id="avatarGirl" checked>
+                            </div>
+                            <div class="avatar-option" data-type="boy">
+                                <img src="/api/sana/avatar/boy" alt="Boy Avatar" class="avatar-preview">
+                                <span>Boy</span>
+                                <input type="radio" name="avatarType" value="boy" id="avatarBoy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-group">
+                        <label>Custom Voice</label>
+                        <div class="voice-upload-section">
+                            <div class="current-voice">
+                                <span>Current Voice: </span>
+                                <span id="currentVoice">Sana Default</span>
+                            </div>
+                            <div class="voice-controls">
+                                <select id="voiceSelect" class="voice-selector">
+                                    <option value="sana_default">Sana Default</option>
+                                    <option value="female_1">Female Voice 1</option>
+                                    <option value="female_2">Female Voice 2</option>
+                                    <option value="male_1">Male Voice 1</option>
+                                    <option value="male_2">Male Voice 2</option>
+                                </select>
+                                <button id="testVoiceBtn" class="test-voice-btn">
+                                    <i class="fas fa-play"></i> Test
+                                </button>
+                            </div>
+                            <div class="upload-voice">
+                                <input type="file" id="voiceFileInput" accept=".wav,.mp3,.ogg,.m4a,.flac" style="display: none;">
+                                <button id="uploadVoiceBtn" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Custom Voice
+                                </button>
+                                <div class="upload-info">
+                                    <small>Supported: WAV, MP3, OGG, M4A, FLAC (Max 10MB)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/mobile-app.js"></script>
+    <script src="js/voice-recognition.js"></script>
+    <script src="js/image-generation.js"></script>
+    <script src="js/whatsapp-integration.js"></script>
+    <script src="js/pwa-service.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => console.log('SW registered'))
+                    .catch(error => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
