@@ -1,0 +1,47 @@
+# Sana AI Assistant - Render Deployment Requirements
+# Core Dependencies for Mobile Server
+
+# Web Framework
+Flask==2.3.3
+Flask-CORS==4.0.0
+Werkzeug==2.3.7
+
+# HTTP Requests & API Integration
+requests==2.31.0
+urllib3==2.0.7
+
+# Image Processing & Generation
+Pillow==10.0.1
+
+# System & Path utilities
+pathlib2==2.3.7
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Production WSGI server
+gunicorn==21.2.0
+
+# SSL/TLS support
+cryptography==41.0.7
+
+# JSON handling (built-in but explicit)
+# json - built-in module
+
+# Date/time handling (built-in)
+# datetime - built-in module
+
+# Logging (built-in)
+# logging - built-in module
+
+# Math operations (built-in)
+# math - built-in module
+
+# Operating system interface (built-in)
+# os - built-in module
+
+# System-specific parameters (built-in)
+# sys - built-in module
+
+# Time-related functions (built-in)
+# time - built-in module

@@ -1,0 +1,32 @@
+# Render.com deployment configuration for Sana AI Assistant
+services:
+  - type: web
+    name: sana-ai-assistant
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python start.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    
+  # Static file serving for mobile assets
+  - type: static
+    name: sana-mobile-assets
+    staticPublishPath: ./mobile
+    buildCommand: echo "No build needed for static assets"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+# Environment variables needed:
+# OPENROUTER_API_KEY - Your OpenRouter API key for AI functionality
